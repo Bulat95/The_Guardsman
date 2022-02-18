@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereController1 : MonoBehaviour
+public class ScriptSphere : MonoBehaviour
 {
     #region Unity
     public GameObject sphera;
@@ -16,11 +16,6 @@ public class SphereController1 : MonoBehaviour
     private float boundsSee = 10f;
     #endregion
 
-    private void Start()
-    {
-
-    }
-
     void Update()
     {
         if (trigger)
@@ -30,7 +25,7 @@ public class SphereController1 : MonoBehaviour
             if (Vector3.Distance(transform.position, playerCollider.transform.position) < boundsSee)
             {
                 Debug.Log("Destroy");
-                Destroy(sphera, 1f);
+                Destroy(sphera, 0.1f);
             }
         }
     }
