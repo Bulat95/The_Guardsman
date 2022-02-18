@@ -4,31 +4,45 @@ using UnityEngine;
 
 public class SphereController1 : MonoBehaviour
 {
-    public Rigidbody sphera;
-    Collider go;
-    bool trigger = false;
-    void Start()
+    #region Unity
+    public GameObject sphera;
+    public float speed = 10f;
+    #endregion
+
+    #region C#
+    private bool trigger = false;
+    SphereCollider spheraCollider;
+    private Collider playerCollider;
+    private float boundsSee = 10f;
+    #endregion
+
+    private void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (trigger)
         {
-            transform.LookAt(go.transform);
-            transform.Translate(new Vector3(0, 0, 10 * Time.deltaTime));
+            transform.LookAt(playerCollider.transform);
+            transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+            if (Vector3.Distance(transform.position, playerCollider.transform.position) < boundsSee)
+            {
+                Debug.Log("Destroy");
+                Destroy(sphera, 1f);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            go = other;
+            playerCollider = other;
             trigger = true;
         }
         else { return; }
     }
+
 
 }
