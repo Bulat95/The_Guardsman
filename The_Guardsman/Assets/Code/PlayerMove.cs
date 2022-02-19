@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
         _moveVector.x = _mobileController.Horizontal() * SpeedMove;
         _moveVector.z = _mobileController.Vertical() * SpeedMove;
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse2))
         {
             _characterAnimator.SetBool("IsFighting", true);
         }

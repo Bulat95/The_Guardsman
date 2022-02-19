@@ -6,13 +6,14 @@ public class ScriptSphere : MonoBehaviour
 {
     #region Unity
     public GameObject sphera;
+    public GameObject HealthBar;
     public float speed = 10f;
     #endregion
 
     #region C#
-    private bool trigger = false;
     SphereCollider spheraCollider;
     private Collider playerCollider;
+    private bool trigger = false;
     private float boundsSee = 10f;
     #endregion
 
@@ -26,6 +27,7 @@ public class ScriptSphere : MonoBehaviour
             {
                 Debug.Log("Destroy");
                 Destroy(sphera, 0.1f);
+                
             }
         }
     }
@@ -35,9 +37,9 @@ public class ScriptSphere : MonoBehaviour
         {
             playerCollider = other;
             trigger = true;
+            HealthBar.GetComponent<HealthBar>().bar.fillAmount += 0.1f;
         }
         else { return; }
     }
-
 
 }
