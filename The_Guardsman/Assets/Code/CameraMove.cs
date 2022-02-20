@@ -1,19 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public GameObject Player;
-
-    private Vector3 offset;
-
+    public GameObject target;
+    public float damping = 1;
+    Vector3 offset;
 
     void Start()
     {
-        offset = transform.position - Player.transform.position;
+        offset = transform.position - target.transform.position;
     }
 
     void LateUpdate()
     {
-        transform.position = Player.transform.position + offset;
+        Vector3 desiredPosition = target.transform.position + offset;
+        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
+        transform.position = position;
+
+        transform.LookAt(target.transform.position);
     }
 }
+
